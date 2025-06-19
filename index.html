@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Utkarsh Jha</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0; padding: 0;
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(135deg, #0a1128, #001f3f, #004170);
+      color: #e0e6f1;
+      scroll-behavior: smooth;
+      min-height: 100vh;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a1128;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #00e1ff;
+      border-radius: 10px;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+      background: rgba(0, 30, 60, 0.75);
+      backdrop-filter: saturate(180%) blur(12px);
+      box-shadow: 0 2px 8px rgba(0, 225, 255, 0.25);
+      z-index: 10000;
+      transition: background 0.3s ease;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: #00e1ff;
+      text-transform: uppercase;
+      font-size: 1.5rem;
+      user-select: none;
+    }
+
+    header nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+    header nav ul li a {
+      color: #a6d9f7;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: background-color 0.25s, color 0.25s;
+    }
+    header nav ul li a:hover,
+    header nav ul li a:focus {
+      background-color: #00e1ff;
+      color: #001f3f;
+      outline: none;
+      box-shadow: 0 0 8px #00e1ff;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+      background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+      position: relative;
+      color: #00e1ff;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-shadow: 0 0 15px rgba(0, 225, 255, 0.7);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 17, 40, 0.75);
+      z-index: 0;
+    }
+    .hero > div {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      width: 100%;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.2em;
+    }
+    .typing {
+      font-size: clamp(1.25rem, 4vw, 2rem);
+      color: #c0f7ff;
+      min-height: 2.5rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      font-style: italic;
+      border-right: 2px solid #00e1ff;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: blink-caret 0.75s step-end infinite;
+      user-select: none;
+    }
+    @keyframes blink-caret {
+      0%, 50%, 100% { border-color: #00e1ff; }
+      25%, 75% { border-color: transparent; }
+    }
+
+    /* Section styles */
+    section {
+      max-width: 1100px;
+      margin: 6rem auto 4rem;
+      padding: 0 1rem;
+    }
+    section h2 {
+      font-weight: 700;
+      font-size: 2.25rem;
+      color: #00e1ff;
+      text-align: center;
+      margin-bottom: 2rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-shadow: 0 0 6px #00e1ff;
+    }
+
+    /* About Section */
+    .about {
+      background: rgba(255 255 255 / 0.07);
+      border-radius: 24px;
+      padding: 3rem 2rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 0 30px #00e1ff33;
+      backdrop-filter: saturate(180%) blur(20px);
+      transition: box-shadow 0.3s ease;
+    }
+    .about:hover {
+      box-shadow: 0 0 50px #00e1ffaa;
+    }
+    .about img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1.75rem;
+      border: 3.5px solid #00e1ff;
+      box-shadow: 0 0 12px #00e1ffbb;
+      transition: transform 0.3s ease;
+    }
+    .about img:hover {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 0 25px #00e1ffee;
+    }
+    .about p {
+      font-size: 1.125rem;
+      color: #c4e9ff;
+      max-width: 600px;
+      line-height: 1.7;
+      font-weight: 500;
+      user-select: text;
+    }
+
+    /* Skills & Projects Grids */
+    .skills-grid, .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Card Styles */
+    .card {
+      background: rgba(255 255 255 / 0.07);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 6px 30px #00e1ff33;
+      backdrop-filter: saturate(200%) blur(20px);
+      transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+      cursor: default;
+      user-select: none;
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 12px 48px #00e1ffbb;
+    }
+    .card h3 {
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #00e1ff;
+      text-shadow: 0 0 8px #00e1ffbb;
+      letter-spacing: 0.05em;
+    }
+    .card p {
+      font-weight: 500;
+      font-size: 1rem;
+      color: #a9dffbcc;
+      line-height: 1.5;
+      user-select: text;
+    }
+
+    /* Contact Section */
+    #contact .about {
+      padding: 2rem;
+      max-width: 480px;
+      margin: 0 auto;
+      box-shadow: 0 0 35px #00e1ff88;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 0.5rem;
+    }
+    input, textarea {
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      font-size: 1rem;
+      background: rgba(255 255 255 / 0.1);
+      color: #e0e6f1;
+      font-weight: 600;
+      resize: vertical;
+      transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease;
+      font-family: 'Outfit', sans-serif;
+    }
+    input::placeholder,
+    textarea::placeholder {
+      color: #aad6f9cc;
+      font-weight: 500;
+      user-select: none;
+    }
+    input:focus,
+    textarea:focus {
+      outline: none;
+      background-color: rgba(0, 225, 255, 0.15);
+      border-color: #00e1ff;
+      box-shadow: 0 0 10px #00e1ffbb;
+    }
+    button {
+      background: linear-gradient(135deg, #00e1ff, #007ea7);
+      padding: 1rem;
+      border-radius: 14px;
+      border: none;
+      font-weight: 800;
+      font-size: 1.125rem;
+      color: #001f3f;
+      cursor: pointer;
+      transition:
+        background-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.15s ease;
+      box-shadow: 0 0 15px #00e1ffbb;
+      user-select: none;
+    }
+    button:hover,
+    button:focus {
+      background: linear-gradient(135deg, #00c6ff, #004d66);
+      box-shadow: 0 0 30px #00e1ffcc;
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1.25rem 1rem;
+      font-size: 0.9rem;
+      color: #56c4ffbb;
+      user-select: none;
+      letter-spacing: 0.08em;
+      background: rgba(0, 30, 60, 0.6);
+      box-shadow: inset 0 1px 4px #00e1ff33;
+      margin-top: 3rem;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 480px) {
+      header {
+        padding: 0 15px;
+        font-size: 1.2rem;
+      }
+      header nav ul {
+        gap: 16px;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      section {
+        margin: 4rem 1rem 3rem;
+      }
+      .about p {
+        font-size: 1rem;
+      }
+      .card h3 {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>Engineer/Developer</div>
+    <nav aria-label="Primary navigation">
+      <ul>
+        <li><a href="#home" tabindex="0">Home</a></li>
+        <li><a href="#about" tabindex="0">About</a></li>
+        <li><a href="#skills" tabindex="0">Skills</a></li>
+        <li><a href="#projects" tabindex="0">Projects</a></li>
+        <li><a href="#contact" tabindex="0">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="home" role="banner">
+    <div>
+      <h1>Utkarsh Jha</h1>
+      <div class="typing" id="typing" aria-live="polite" aria-atomic="true"></div>
+    </div>
+  </section>
+
+  <section id="about" aria-label="About me section">
+    <h2>About Me</h2>
+    <div class="about">
+      <img src="ujay.jpeg" alt="Portrait of Utkarsh Jha" loading="lazy" />
+      <p>
+        Hello World🙋🏽‍♂️, I’m an enthusiastic Engineer with a robust background in machine learning, data pipelines, and full-stack development.
+        I specialize in crafting scalable, high-impact data solutions and love turning complex challenges into AI-powered innovations.
+      </p>
+    </div>
+  </section>
+
+  <section id="skills" aria-label="Skills section">
+    <h2>Skills</h2>
+    <div class="skills-grid" id="skills-grid" role="list"></div>
+  </section>
+
+  <section id="projects" aria-label="Projects section">
+    <h2>Projects</h2>
+    <div class="projects-grid" id="projects-grid" role="list"></div>
+  </section>
+
+  <section id="contact" aria-label="Contact section">
+    <h2>Contact</h2>
+    <div class="about">
+      <form
+        onsubmit="event.preventDefault(); alert('Message sent!');"
+        aria-label="Contact form"
+      >
+        <input
+          type="text"
+          placeholder="Your Name"
+          required
+          aria-required="true"
+          autocomplete="name"
+        />
+        <input
+          type="email"
+          placeholder="Your Email"
+          required
+          aria-required="true"
+          autocomplete="email"
+        />
+        <textarea
+          rows="5"
+          placeholder="Your Message"
+          required
+          aria-required="true"
+        ></textarea>
+        <button type="submit" aria-label="Send message">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Utkarsh Jha. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Typing effect with pause and smooth caret blink
+    const roles = [
+      'AI Engineer',
+      'ML Engineer',
+      'Data Scientist',
+      'Full-Stack Developer',
+      'Software Engineer'
+    ];
+    let roleIndex = 0;
+    let charIndex = 0;
+    const typingDiv = document.getElementById('typing');
+
+    function type() {
+      if (charIndex < roles[roleIndex].length) {
+        typingDiv.textContent += roles[roleIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, 100);
+      } else {
+        setTimeout(erase, 2000);
+      }
+    }
+    function erase() {
+      if (charIndex > 0) {
+        typingDiv.textContent = roles[roleIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(erase, 50);
+      } else {
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(type, 300);
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(type, 500);
+    });
+
+    // Dynamically add skills
+    const skills = [
+      'Python', 'C++', 'Core Java', 'Langchain', 'Node.Js', 'React.Js',
+      'DBMS', 'SQL', 'Generative AI', 'Machine Learning', 'HTML/CSS/JS',
+      'FastAPI/Flask', 'Cloud Computing', 'AI Implementation', 'RAG Framework'
+    ];
+    const skillsGrid = document.getElementById('skills-grid');
+    skills.forEach(skill => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.setAttribute('role', 'listitem');
+      card.textContent = skill;
+      skillsGrid.appendChild(card);
+    });
+
+    // Dynamically add projects
+    const projects = [
+      {
+        title: 'AI Bot for Flappy Bird',
+        description: 'Neural networks + genetic algorithms built from scratch using Python, NumPy, Pygame.'
+      },
+      {
+        title: 'Real-Time Whiteboard',
+        description: 'Collaborative app with Canvas API, WebSockets via Socket.io, and NodeJS.'
+      },
+      {
+        title: 'AI Doodle Studio',
+        description: 'HTML5 & CSS3 + JavaScript (ES6+) for a responsive, real-time AI-inspired sketchboard.'
+      }
+    ];
+    const projectsGrid = document.getElementById('projects-grid');
+    projects.forEach(proj => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.setAttribute('role', 'listitem');
+      card.innerHTML = `<h3>${proj.title}</h3><p>${proj.description}</p>`;
+      projectsGrid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
